@@ -82,9 +82,11 @@ class Fractal(db.Model):
     xb = db.Column(db.Float, nullable=False)
     ya = db.Column(db.Float, nullable=False)
     yb = db.Column(db.Float, nullable=False)
-    if CONF.database-url.startswith('sqlite'):
+    if CONF.database_url.startswith('sqlite'):
+        LOG.info('Using sqlite')
         image = db.Column(db.LargeBinary, nullable=True)
     else:
+        LOG.info('Using mysql')
         image = db.Column(MEDIUMBLOB, nullable=True)
     generated_by = db.Column(db.String(256), nullable=True)
 
