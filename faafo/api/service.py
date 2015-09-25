@@ -118,8 +118,10 @@ def get_fractal(fractalid):
                                   'message': 'Fracal not found'})
         response.status_code = 404
     else:
+        size = (300, 300)
         image_data = base64.b64decode(fractal.image)
         image = Image.open(cStringIO.StringIO(image_data))
+        image.thumbnail(size)
         output = cStringIO.StringIO()
         image.save(output, "PNG")
         image.seek(0)
