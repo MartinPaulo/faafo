@@ -111,7 +111,7 @@ def index(page=1):
 
 
 @app.route('/fractal/<string:fractalid>', methods=['GET'])
-def get_fractal(fractalid):
+def get_fractal_thumbnail(fractalid):
     size = (300, 300)
     return get_fractal_image(fractalid, size)
 
