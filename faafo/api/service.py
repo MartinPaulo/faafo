@@ -112,22 +112,31 @@ def index(page=1):
 
 @app.route('/fractal/<string:fractalid>', methods=['GET'])
 def get_fractal(fractalid):
+    size = (300, 300)
+    return get_fractal_image(fractalid, size)
+
+
+@app.route('/fractal/full/<string:fractalid>', methods=['GET'])
+def get_fractal(fractalid):
+    return get_fractal_image(fractalid)
+
+
+def get_fractal_image(fractalid, size=None):
     fractal = Fractal.query.filter_by(uuid=fractalid).first()
     if not fractal:
         response = flask.jsonify({'code': 404,
-                                  'message': 'Fracal not found'})
+                                  'message': 'Fractal not found'})
         response.status_code = 404
     else:
-        size = (300, 300)
         image_data = base64.b64decode(fractal.image)
         image = Image.open(cStringIO.StringIO(image_data))
-        image.thumbnail(size)
+        if size:
+            image.thumbnail(size)
         output = cStringIO.StringIO()
         image.save(output, "PNG")
         image.seek(0)
         response = flask.make_response(output.getvalue())
         response.content_type = "image/png"
-
     return response
 
 
