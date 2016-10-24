@@ -141,7 +141,7 @@ if [[ -e /etc/os-release ]]; then
         # git clone https://git.openstack.org/openstack/faafo
         
         cd faafo
-        sudo pip install -r requirements.txt
+        sudo pip install --ignore-installed -r requirements.txt
         sudo python setup.py install
 
         sudo sed -i -e "s#transport_url = .*#transport_url = $URL_MESSAGING#" /etc/faafo/faafo.conf
