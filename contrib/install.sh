@@ -173,7 +173,8 @@ priority=20"
     fi
 
     if [[ $RUN_WORKER -eq 1 || $RUN_API -eq 1 ]]; then
-        sudo systemctl start supervisor
+        # sudo systemctl start supervisor
+        sudo sudo supervisorctl start all
         sudo supervisorctl reload
         sleep 5
     fi
