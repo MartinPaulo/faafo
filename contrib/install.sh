@@ -116,6 +116,7 @@ if [[ -e /etc/os-release ]]; then
     if [[ $INSTALL_FAAFO -eq 1 ]]; then
         if [[ $ID = 'ubuntu' || $ID = 'debian' ]]; then
             sudo apt-get install -y python-dev python-pip supervisor git zlib1g-dev libmysqlclient-dev python-mysqldb
+            sudo systemctl start supervisord
         elif [[ $ID = 'fedora' ]]; then
             sudo dnf install -y python-devel python-pip supervisor git zlib-devel mariadb-devel gcc which python-mysql
             sudo systemctl enable supervisord
@@ -174,7 +175,7 @@ priority=20"
 
     if [[ $RUN_WORKER -eq 1 || $RUN_API -eq 1 ]]; then
         # sudo systemctl start supervisor
-        sudo sudo supervisorctl start all
+        # sudo supervisorctl start all
         sudo supervisorctl reload
         sleep 5
     fi
