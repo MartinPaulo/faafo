@@ -1,4 +1,4 @@
-pbr>=1.8
+pbr>=1.6
 pytz
 positional
 iso8601

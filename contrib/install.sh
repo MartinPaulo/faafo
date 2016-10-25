@@ -141,6 +141,8 @@ if [[ -e /etc/os-release ]]; then
         # git clone https://git.openstack.org/openstack/faafo
         
         cd faafo
+        # it might be better to uninstall python-pbr via apt-get?
+        # find out if pbr is updated by an apt-get upgrade...
         sudo pip install --upgrade pbr
         sudo pip install -r requirements.txt
         sudo python setup.py install
