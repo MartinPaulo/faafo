@@ -152,7 +152,9 @@ if [[ -e /etc/os-release ]]; then
         sudo sed -i -e "s#endpoint_url = .*#endpoint_url = $URL_ENDPOINT#" /etc/faafo/faafo.conf
     fi
 
-
+    if [ -d "/usr/local/bin" ]; then
+        PATH=$PATH:/usr/local/bin
+    fi
     if [[ $RUN_API -eq 1 ]]; then
         $(which faafo-api)
         until [ $? -eq 0 ]; do
