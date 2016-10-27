@@ -29,9 +29,6 @@ if [[ -e /etc/os-release ]]; then
     URL_MESSAGING='amqp://guest:guest@localhost:5672/'
 
     while getopts e:m:d:i:r: FLAG; do
-        echo "===============================================> $FLAG"
-        echo "===============================================> $FLAG"
-        echo "===============================================> $FLAG"
         case $FLAG in
             i)
                 case $OPTARG in
@@ -157,6 +154,11 @@ if [[ -e /etc/os-release ]]; then
 
 
     if [[ $RUN_API -eq 1 ]]; then
+        $(which faafo-api)
+        until [ $? -eq 0 ]; do
+            $(which faafo-api)
+        done
+
         faafo_api="
 [program:faafo_api]
 command=$(which faafo-api)
