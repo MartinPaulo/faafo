@@ -153,18 +153,19 @@ if [[ -e /etc/os-release ]]; then
     fi
 
     if [ -d "/usr/local/bin" ]; then
-        PATH=$PATH:/usr/local/bin
+        PATH="$PATH:/usr/local/bin"
     fi
-    if [[ $RUN_API -eq 1 ]]; then
-        $(which faafo-api)
-        until [ $? -eq 0 ]; do
-            echo "Waiting for $(which faafo-api) ..."
-            echo $PATH
-            sleep 5
-            $(which faafo-api)
-        done
+#        $(which faafo-api)
+#        until [ $? -eq 0 ]; do
+#            echo "Waiting for $(which faafo-api) ..."
+#            echo $PATH
+#            sleep 5
+#            $(which faafo-api)
+#        done
+    echo $PATH
 
-        faafo_api="
+    if [[ $RUN_API -eq 1 ]]; then
+       faafo_api="
 [program:faafo_api]
 command=$(which faafo-api)
 priority=10"
