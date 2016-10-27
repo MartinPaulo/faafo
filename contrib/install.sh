@@ -156,6 +156,8 @@ if [[ -e /etc/os-release ]]; then
     if [[ $RUN_API -eq 1 ]]; then
         $(which faafo-api)
         until [ $? -eq 0 ]; do
+            echo "Waiting for $(which faafo-api) ..."
+            sleep 5
             $(which faafo-api)
         done
 
