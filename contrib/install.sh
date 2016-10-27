@@ -29,6 +29,9 @@ if [[ -e /etc/os-release ]]; then
     URL_MESSAGING='amqp://guest:guest@localhost:5672/'
 
     while getopts e:m:d:i:r: FLAG; do
+        echo "===============================================> $FLAG"
+        echo "===============================================> $FLAG"
+        echo "===============================================> $FLAG"
         case $FLAG in
             i)
                 case $OPTARG in
@@ -140,7 +143,7 @@ if [[ -e /etc/os-release ]]; then
         git clone https://github.com/MartinPaulo/son_of_faafo.git /faafo
         # git clone https://git.openstack.org/openstack/faafo
         
-        cd faafo
+        cd /faafo || exit
         # it might be better to uninstall python-pbr via apt-get?
         # find out if pbr is updated by an apt-get upgrade...
         sudo pip install --upgrade pbr
@@ -193,7 +196,7 @@ priority=20"
     fi
 
     if [[ $RUN_DEMO -eq 1 && $RUN_API -eq 1 ]]; then
-        faafo --endpoint-url $URL_ENDPOINT --debug create
+        faafo --endpoint-url "$URL_ENDPOINT" --debug create
     fi
 
 else
